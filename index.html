@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f2f2f2;
+        width: 100vw;
+        height: 100vh;
+      }
+      .formSec {
+        width: 50%;
+        max-width: 360px;
+        padding: 20px;
+        border-radius: 8px;
+        background: #fff;
+      }
+      .formSec .sec {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      .formSec .sec input,
+      .formSec .sec select,
+      .formSec .sec textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        text-transform: capitalize;
+      }
+      .formSec .sec button {
+        background: #ff8800;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ff8800;
+        color: #fff;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+    </style>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("xZVlNfzpl5v4k57AA");
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="formSec">
+      <div class="sec">
+        <input type="name" id="name" placeholder="enter your name" />
+      </div>
+      <div class="sec">
+        <input type="email" id="email" placeholder="enter your email" />
+      </div>
+      <div class="sec">
+        <input type="tel" id="phone" placeholder="enter your phone" />
+      </div>
+      <div class="sec">
+        <select id="services">
+          <option value="service1">service1</option>
+          <option value="service2">service2</option>
+          <option value="service3">service3</option>
+          <option value="service4">service4</option>
+        </select>
+      </div>
+      <div class="sec">
+        <textarea id="message" placeholder="enter your messgae"></textarea>
+      </div>
+      <div class="sec">
+        <button onclick="sendEmail()">Submit</button>
+      </div>
+    </div>
+    <script>
+      function sendEmail() {
+        var userName = document.getElementById("name");
+        var userEmail = document.getElementById("email");
+        var userPhone = document.getElementById("phone");
+        var userServices = document.getElementById("services");
+        var userMessage = document.getElementById("message");
+
+        if (
+          userName &&
+          userName.value !== "" &&
+          userEmail &&
+          userEmail.value !== "" &&
+          userPhone &&
+          userPhone.value !== "" &&
+          userServices &&
+          userServices.value !== "" &&
+          userMessage &&
+          userMessage.value !== ""
+        ) {
+          var templateParams = {
+            name: userName.value,
+            email: userEmail.value,
+            phone: userPhone.value,
+            services: userServices.value,
+            message: userMessage.value,
+          };
+
+          emailjs
+            .send("service_7lk1zha", "template_ckel97j", templateParams)
+            .then(
+              function (response) {
+                console.log("SUCCESS!", response.status, response.text);
+              },
+              function (error) {
+                console.log("FAILED...", error);
+              }
+            );
+        } else {
+          alert("all fileds are mendtry");
+        }
+      }
+    </script>
+  </body>
+</html>
