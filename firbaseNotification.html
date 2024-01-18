@@ -1,0 +1,43 @@
+<script>
+  const FCM_ENDPOINT = "https://fcm.googleapis.com/fcm/send";
+  const SERVER_KEY =
+    "AAAAbhhZjIQ:APA91bFkzGdBUC5MZ2TZZotZRuq74UzDkNlynIoqs1ALahpmrrXwirHc8YMO43ueF-GJ_G7sOq3U7Atc0o4WKXrYNDF1BEKbqV3tygcqraxWPvO5BKSOcFR7-8dIzgK_1Ek2-JNqfL6M"; // Replace with your FCM server key
+
+  const notificationData = {
+    registration_ids: [
+      "ezFV0zCgjVAlYBzXP7Rqbx:APA91bHLIA4Ldz685mVg9kbM7HYsF1627o7SFbRM8rRAQ36jw0rPFiWMtEZZ1tu59tPFQpSFruNAUWUmp6YIg7ncZKMNAodOw1peHI8jBm4OVoyd9nD9Jd0xQf3mLdUXtBX7vErY8bcJ",
+      "fUGintkoKs7sQel9uvQnoP:APA91bHKDLheTWc9kfN_fBx3aoU3QfU01ch4i9C6NXFSuoae7Ev536udw4_JkUDBci2xcjVQQium-bNNhfVNmhYCg9yfRneEIT4CF5wUpA-MSEwwlaHtv0-4zi6xrwxxCinjiHpLLrRW",
+      "cb87jHkApH4KiVysGwzL7r:APA91bFKDBJXuflhI5EoZ6HjIeicAT3eP9zxlLF2JwhMCrvVAgQ5Sv3-uicT0pkgyDipCenxQLrnFQr-aoGtmt4vakpyScNyuPQt1AKg2oZEzhQoH56edCW3S2T5xGbxd-hJ1h9Qv2nN",
+      "eWEl2TUf_rkC7hlrdUggzH:APA91bEcrlW9xGc7hWPYS5alYpO9IO8ImdAWDJ4dDjfEY-u__ZXJAigO4uZdykvAxu2URKGacMwyJy9WyAxj7dhMFQPFjL6g05fI5COeacJJT13xeDRiJhFdAcgcAA3DlcqnU-waxzuR",
+    ], // Replace with the recipient device's FCM token
+    notification: {
+      title:
+        "अमेरिका ने यमन के हौथियों को एक प्रमुख आतंकवादी समूह के रूप में फिर किया नामित",
+      body: "अमेरिका: अमेरिका ने यमन के हौथिस को ‘आतंकवादी’ इकाई के रूप में फिर से नामित किया। लाल सागर और अदन की खाड़ी में अंतरराष्ट्रीय नौवहन पर कई हफ्तों तक मिसाइल और ड्रोन हमलों के बाद संयुक्त राज्य अमेरिका यमन के हौथी विद्रोहियों पर कार्रवाई कर रहा है और उन्हें विशेष रूप से नामित वैश्विक आतंकवादी",
+      icon: "https://breakingnewsapp.netlify.app/_ipx/w_1920,q_75/https%3A%2F%2Fi0.wp.com%2Fjantaserishta.com%2Fwp-content%2Fuploads%2F2024%2F01%2FUntitled-109-18.jpg%3Ffit%3D1023%252C575%26ssl%3D1?url=https%3A%2F%2Fi0.wp.com%2Fjantaserishta.com%2Fwp-content%2Fuploads%2F2024%2F01%2FUntitled-109-18.jpg%3Ffit%3D1023%252C575%26ssl%3D1&w=1920&q=75",
+      image:
+        "https://breakingnewsapp.netlify.app/_ipx/w_1920,q_75/https%3A%2F%2Fi0.wp.com%2Fjantaserishta.com%2Fwp-content%2Fuploads%2F2024%2F01%2FUntitled-109-18.jpg%3Ffit%3D1023%252C575%26ssl%3D1?url=https%3A%2F%2Fi0.wp.com%2Fjantaserishta.com%2Fwp-content%2Fuploads%2F2024%2F01%2FUntitled-109-18.jpg%3Ffit%3D1023%252C575%26ssl%3D1&w=1920&q=75",
+      click_action:
+        "https://breakingnewsapp.netlify.app/hi/world/3ade7621adb5ac82272f1e282161b555",
+    },
+    data: {
+      customData1: "",
+    },
+  };
+
+  fetch(FCM_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `key=${SERVER_KEY}`,
+    },
+    body: JSON.stringify(notificationData),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("FCM Response:", data);
+    })
+    .catch((error) => {
+      console.error("Error sending FCM:", error);
+    });
+</script>
